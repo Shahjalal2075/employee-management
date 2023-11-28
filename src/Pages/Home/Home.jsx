@@ -1,8 +1,15 @@
+import Header from "../../Shared/Header/Header";
+import Banner from "./Banner";
+import Service from "./Service";
+import Testimonials from "./testimonials";
 
 const Home = () => {
     return (
         <div>
-            <h2 className="text-5xl text-center font-bold my-16">Home</h2>
+            <Header></Header>
+            <Banner></Banner>
+            <Service></Service>
+            <Testimonials></Testimonials>
         </div>
     );
 };
