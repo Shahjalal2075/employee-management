@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import "./Header.css";
@@ -7,10 +7,16 @@ const Header = () => {
 
     const { user, signOutUser, isChecked } = useContext(AuthContext);
 
+    const [isBtn, setIsBtn] = useState(false);
+
     const handleLogOut = () => {
         signOutUser()
             .then()
             .catch()
+    }
+
+    const handleLogOutToggle = () => {
+        setIsBtn(!isBtn);
     }
 
     return (
@@ -22,9 +28,9 @@ const Header = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <div tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-32">
-                            <NavLink activeClassName="activeR" to={"/"}>Home</NavLink>
-                            <NavLink activeClassName="activeR" to={"/dashboard"}>Dashboard</NavLink>
-                            <NavLink activeClassName="activeR" to={"/contact"}>Contact</NavLink>
+                            <NavLink activeclassname="active" to={"/"}>Home</NavLink>
+                            <NavLink activeclassname="active" to={"/dashboard"}>Dashboard</NavLink>
+                            <NavLink activeclassname="active" to={"/contact"}>Contact</NavLink>
 
                         </div>
                     </div>
@@ -39,9 +45,9 @@ const Header = () => {
                 </div>
                 <div className="navbar-center">
                     <div className="lg:flex gap-8 hidden">
-                        <NavLink activeClassName="active" to={"/"}>Home</NavLink>
-                        <NavLink activeClassName="active" to={"/dashboard"}>Dashboard</NavLink>
-                        <NavLink activeClassName="active" to={"/contact"}>Contact</NavLink>
+                        <NavLink activeclassname="active" to={"/"}>Home</NavLink>
+                        <NavLink activeclassname="active" to={"/dashboard"}>Dashboard</NavLink>
+                        <NavLink activeclassname="active" to={"/contact"}>Contact</NavLink>
                     </div>
                     <div className="lg:hidden ">
                         <Link to={"/"}>
@@ -56,13 +62,27 @@ const Header = () => {
                     {
                         user ?
                             <div className="flex flex-col items-center justify-center gap-2 border p-2 rounded-lg font-bold">
-                                <div className="flex gap-2 justify-center items-center">
-                                    {
-                                        user.photoURL ? <img className="mask mask-circle w-12" src={user.photoURL} /> : <img className="mask mask-circle w-12" src="https://i.ibb.co/0rcvLrD/users.png" />
-                                    }
-                                    <Link className={isChecked ? 'text-[#fff]' : 'text-[#181818]'} onClick={handleLogOut}>Logout</Link>
-                                </div>
-                                <h2 className="text-lg font-bold md:flex hidden">{user.displayName}</h2>
+                                {
+                                    isBtn ?
+                                        <div className="flex gap-2 justify-center items-center">
+                                            <Link className={isChecked ? 'text-[#fff]' : 'text-[#181818]'} onClick={handleLogOut}>Logout</Link>
+                                            <button className="ml-4" onClick={handleLogOutToggle}>
+                                                {
+                                                    user.photoURL ? <img className="mask mask-circle w-12" src={user.photoURL} /> : <img className="mask mask-circle w-12" src="https://i.ibb.co/0rcvLrD/users.png" />
+                                                }
+                                            </button>
+                                        </div>
+                                        :
+                                        <div className="flex gap-2 justify-center items-center">
+                                            <button onClick={handleLogOutToggle}>
+                                                {
+                                                    user.photoURL ? <img className="mask mask-circle w-12" src={user.photoURL} /> : <img className="mask mask-circle w-12" src="https://i.ibb.co/0rcvLrD/users.png" />
+                                                }
+                                            </button>
+                                        </div>
+                                }
+
+
                             </div>
                             :
                             <div className="flex gap-8">
