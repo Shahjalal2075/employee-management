@@ -27,7 +27,9 @@ const Register = () => {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(name + " " + email + " " + password);
+        const role = selected.name;
+        console.log(name + " " + email + " " + role);
+        const user = {name,email,role}
 
         if (password.length < 6) {
             toast("Password is less than 6 characters.");
@@ -53,6 +55,14 @@ const Register = () => {
                 })
                     .then()
                     .catch()
+
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
 
                 setTimeout(() => {
                     navigate("/");
