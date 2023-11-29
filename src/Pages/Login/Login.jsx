@@ -66,9 +66,9 @@ const Login = () => {
 
             <div className=" col-span-2 flex flex-col items-center justify-center">
 
-                <h2 className="text-4xl font-bold">Welcome Back</h2>
-                <p className="text-base font-medium mt-12">Please Enter Your Details</p>
-                <button onClick={handleGoogleSignin} className="border-[#38C6D1] border-2 px-6 py-1 rounded-2xl text-xl font-semibold my-6 w-80 flex justify-center items-center gap-4">
+                <h2 className="text-4xl font-bold mt-8">Welcome Back</h2>
+                <p className="text-base font-medium mt-6 mb-4">Please Enter Your Details</p>
+                {/*<button onClick={handleGoogleSignin} className="border-[#38C6D1] border-2 px-6 py-1 rounded-2xl text-xl font-semibold my-6 w-80 flex justify-center items-center gap-4">
                     <img className="w-6" src="https://i.ibb.co/5kpQLKC/google.png" alt="Google" />
                     Log In with Google
                 </button>
@@ -76,7 +76,7 @@ const Login = () => {
                     <hr className="w-20" />
                     <p>or</p>
                     <hr className="w-20" />
-                </div>
+    </div>*/}
                 <div className="flex flex-col justify-center items-center">
                     <form onSubmit={handleLogin} className="flex flex-col justify-center items-center" action="">
                         <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Enter Email" type="email" name="email" required />
