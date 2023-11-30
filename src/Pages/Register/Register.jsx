@@ -16,7 +16,7 @@ const role = [
 
 const Register = () => {
 
-    const { createUser, googleUser } = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const [selected, setSelected] = useState(role[0]);
 
@@ -26,10 +26,13 @@ const Register = () => {
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
+        const accountNo = e.target.account_no.value;
+        const salary = e.target.salary.value;
+        const designation = e.target.designation.value;
         const password = e.target.password.value;
         const role = selected.name;
         console.log(name + " " + email + " " + role);
-        const user = { name, email, role }
+        const user = { name, email, accountNo, salary, designation, role }
 
         if (password.length < 6) {
             toast("Password is less than 6 characters.");
@@ -74,22 +77,6 @@ const Register = () => {
             })
     }
 
-    const handleGoogleSignin = () => {
-        googleUser()
-            .then(result => {
-                console.log(result.user);
-                toast("User Create Succsessfully.");
-
-                setTimeout(() => {
-                    navigate("/");
-                }, 1600);
-            })
-            .catch(error => {
-                console.error(error);
-                toast(error.message);
-            })
-    }
-
     return (
         <div className="grid lg:grid-cols-5 grid-cols-2">
 
@@ -110,10 +97,10 @@ const Register = () => {
                     <form onSubmit={handleRegister} className="flex flex-col justify-center items-center" action="">
                         <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Enter Full Name" type="text" name="name" required />
                         <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Enter Email" type="email" name="email" required />
-                        <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Bank Account Number" type="text" name="name" required />
-                        <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Salary" type="text" name="name" required />
-                        <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Designation" type="text" name="name" required />
-                        
+                        <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Bank Account Number" type="text" name="account_no" required />
+                        <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Salary" type="text" name="salary" required />
+                        <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Designation" type="text" name="designation" required />
+
 
                         <Listbox className="" value={selected} onChange={setSelected}>
                             <div className="relative mt-1">

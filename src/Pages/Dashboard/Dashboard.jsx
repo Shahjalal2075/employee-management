@@ -7,7 +7,7 @@ const Dashboard = () => {
             <div className="">
                 <DashboardMenu></DashboardMenu>
             </div>
-            <div className="bg-green-600 col-span-4">
+            <div className="col-span-4">
                 <Outlet></Outlet>
             </div>
         </div>
