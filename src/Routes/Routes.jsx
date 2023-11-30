@@ -11,6 +11,7 @@ import Progress from '../Pages/Dashboard/DashboardSection/Progress';
 import EmployeeList from '../Pages/Dashboard/DashboardSection/EmployeeList';
 import PaymentHistory from '../Pages/Dashboard/DashboardSection/PaymentHistory';
 import WorkSheet from '../Pages/Dashboard/DashboardSection/WorkSheet';
+import EmployeeDetails from '../Pages/Dashboard/DashboardSection/EmployeeDetails';
 
 const Routes = createBrowserRouter([
     {
@@ -57,6 +58,11 @@ const Routes = createBrowserRouter([
                     {
                         path: "/dashboard/work-sheet",
                         element : <WorkSheet></WorkSheet>
+                    },
+                    {
+                        path: "/dashboard/employee/:id",
+                        loader: ({ params }) => fetch(`http://localhost:5000/users/Employee/${params.id}`),
+                        element : <EmployeeDetails></EmployeeDetails>
                     }
                 ]
             },

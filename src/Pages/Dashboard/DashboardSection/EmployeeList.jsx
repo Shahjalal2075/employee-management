@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import EmployeeView from "./EmployeeView";
 
 const EmployeeList = () => {
 
@@ -8,6 +9,10 @@ const EmployeeList = () => {
             .then(res => res.json())
             .then(data => setEmployees(data))
     }, []);
+
+    //console.log(employees);
+
+    
 
     return (
         <div>
@@ -31,16 +36,11 @@ const EmployeeList = () => {
 
                     <tbody>
                         {
-                            employees.map((employee,index) => <tr key={employee._id}>
-                                <th>{index+1}</th>
-                                <td>{employee.name}</td>
-                                <td>{employee.email}</td>
-                                <td><button><img className="w-8" src="https://i.ibb.co/dJqs5tT/check.png" alt="" /></button></td>
-                                <td>{employee.accountNo}</td>
-                                <td>{employee.salary}</td>
-                                <td><button className="bg-[#2AD252] px-3 py-2 font-bold text-base rounded-xl text-white">Pay</button></td>
-                                <td><button className="bg-[#7054DC] px-3 py-2 font-bold text-base rounded-xl text-white">Details</button></td>
-                            </tr>)
+                            employees.map((employee, index) => <EmployeeView
+                            key={employee._id}
+                            employee={employee}
+                            index={index}
+                            ></EmployeeView>)
                         }
                     </tbody>
                 </table>

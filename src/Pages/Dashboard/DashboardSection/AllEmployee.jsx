@@ -4,7 +4,7 @@ const AllEmployee = () => {
 
     const [employees, setEmployees] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/users/HR/Employee')
+        fetch('http://localhost:5000/users/HR/Employee/Admin')
             .then(res => res.json())
             .then(data => setEmployees(data))
     }, []);
@@ -20,12 +20,9 @@ const AllEmployee = () => {
                         <tr>
                             <th>SL</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Verified</th>
-                            <th>Bank Account</th>
-                            <th>Salary</th>
-                            <th>Pay</th>
-                            <th>Details</th>
+                            <th>Designation</th>
+                            <th>Make HR</th>
+                            <th>Fire</th>
                         </tr>
                     </thead>
 
@@ -34,12 +31,9 @@ const AllEmployee = () => {
                             employees.map((employee, index) => <tr key={employee._id}>
                                 <th>{index + 1}</th>
                                 <td>{employee.name}</td>
-                                <td>{employee.email}</td>
-                                <td><button><img className="w-8" src="https://i.ibb.co/dJqs5tT/check.png" alt="" /></button></td>
-                                <td>{employee.accountNo}</td>
-                                <td>{employee.salary}</td>
-                                <td><button className="bg-[#2AD252] px-3 py-2 font-bold text-base rounded-xl text-white">Pay</button></td>
-                                <td><button className="bg-[#7054DC] px-3 py-2 font-bold text-base rounded-xl text-white">Details</button></td>
+                                <td>{employee.designation}</td>
+                                <td><button className="bg-[#2AD252] px-3 py-2 font-bold text-base rounded-xl text-white">Make HR</button></td>
+                                <td><button className="bg-[#E65B65] px-3 py-2 font-bold text-base rounded-xl text-white">Fire</button></td>
                             </tr>)
                         }
                     </tbody>

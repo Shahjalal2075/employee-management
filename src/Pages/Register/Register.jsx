@@ -14,6 +14,9 @@ const role = [
     { name: 'Admin' },
 ]
 
+//const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+//const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const Register = () => {
 
     const { createUser } = useContext(AuthContext);
@@ -31,6 +34,7 @@ const Register = () => {
         const designation = e.target.designation.value;
         const password = e.target.password.value;
         const role = selected.name;
+        //const profile = {image: data.image[0]}
         console.log(name + " " + email + " " + role);
         const user = { name, email, accountNo, salary, designation, role }
 
@@ -100,7 +104,7 @@ const Register = () => {
                         <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Bank Account Number" type="text" name="account_no" required />
                         <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Salary" type="text" name="salary" required />
                         <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Designation" type="text" name="designation" required />
-
+                        <input className="h-10 rounded-2xl mt-4 file-input file-input-bordered  w-full max-w-xs" type="file" name="image" />
 
                         <Listbox className="" value={selected} onChange={setSelected}>
                             <div className="relative mt-1">
