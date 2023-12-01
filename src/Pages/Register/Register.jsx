@@ -8,16 +8,18 @@ import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
-const role = [
-    { name: 'Employee' },
-    { name: 'HR' },
-    { name: 'Admin' },
-]
+
 
 //const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 //const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Register = () => {
+
+    const role = [
+        { name: 'Employee' },
+        { name: 'HR' },
+        { name: 'Admin' },
+    ]
 
     const { createUser } = useContext(AuthContext);
     const navigate = useNavigate();

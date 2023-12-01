@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import EmployeeView from "./EmployeeView";
+import axios from "axios";
 
 const EmployeeList = () => {
 
     const [employees, setEmployees] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/users/Employee')
-            .then(res => res.json())
-            .then(data => setEmployees(data))
+        axios.get('http://localhost:5000/users/Employee',{withCredentials: true})
+        .then(res=>{
+            setEmployees(res.data);
+        })
     }, []);
 
     //console.log(employees);

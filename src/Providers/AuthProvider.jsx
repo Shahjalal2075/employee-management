@@ -47,13 +47,15 @@ const AuthProvider = ({ children }) => {
 
                 axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
                     .then(res => {
-                        console.log(res.data)
+                        console.log(res.data.token)
+                        localStorage.setItem('access-token',res.data.token);
                     })
             }
             else {
                 axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
+                        localStorage.removeItem('access-token');
                     })
             }
         });

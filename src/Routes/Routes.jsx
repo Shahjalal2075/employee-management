@@ -12,6 +12,8 @@ import EmployeeList from '../Pages/Dashboard/DashboardSection/EmployeeList';
 import PaymentHistory from '../Pages/Dashboard/DashboardSection/PaymentHistory';
 import WorkSheet from '../Pages/Dashboard/DashboardSection/WorkSheet';
 import EmployeeDetails from '../Pages/Dashboard/DashboardSection/EmployeeDetails';
+import PrivateRoute from './PrivateRoute';
+import CheckoutForm from '../Pages/Dashboard/Payment/CheckOutForm';
 
 const Routes = createBrowserRouter([
     {
@@ -33,11 +35,11 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "/dashboard",
-                element: <Dashboard></Dashboard>,
+                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                 children: [
                     {
                         path: "/dashboard",
-                        element: <Progress></Progress>
+                        element: <AllEmployee></AllEmployee>
                     },
                     {
                         path: "/dashboard/progress",
@@ -63,6 +65,10 @@ const Routes = createBrowserRouter([
                         path: "/dashboard/employee/:id",
                         loader: ({ params }) => fetch(`http://localhost:5000/users/Employee/${params.id}`),
                         element : <EmployeeDetails></EmployeeDetails>
+                    },
+                    {
+                        path: "/dashboard/pay/:id",
+                        element : <CheckoutForm></CheckoutForm>
                     }
                 ]
             },

@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
+import AllEmployeeView from "./AllEmployeeView";
+import axios from "axios";
 
 const AllEmployee = () => {
 
     const [employees, setEmployees] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/users/HR/Employee/Admin')
-            .then(res => res.json())
-            .then(data => setEmployees(data))
+        axios.get('http://localhost:5000/users/HR/Employee/Admin',{withCredentials: true})
+        .then(res=>{
+            setEmployees(res.data);
+        })
     }, []);
+
+   
 
     return (
         <div>
@@ -28,13 +33,11 @@ const AllEmployee = () => {
 
                     <tbody>
                         {
-                            employees.map((employee, index) => <tr key={employee._id}>
-                                <th>{index + 1}</th>
-                                <td>{employee.name}</td>
-                                <td>{employee.designation}</td>
-                                <td><button className="bg-[#2AD252] px-3 py-2 font-bold text-base rounded-xl text-white">Make HR</button></td>
-                                <td><button className="bg-[#E65B65] px-3 py-2 font-bold text-base rounded-xl text-white">Fire</button></td>
-                            </tr>)
+                            employees.map((employee, index) => <AllEmployeeView
+                            key={employee._id}
+                            employee={employee}
+                            index={index}
+                            ></AllEmployeeView>)
                         }
                     </tbody>
                 </table>
