@@ -1,8 +1,23 @@
-# React + Vite
+## Website Features:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- User Registration and Authentication
 
-Currently, two official plugins are available:
+- Homepage has navbar,Banner Slider, Services, testimonials, newsletter, working process, footer
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- There are Dashboard and Contact page.
+
+- Dashboard has maintain 3 types role:
+    1. Admin
+    2. HR
+    3. Employee
+
+- Admin view All employee and hr. and he make to Hr anyone.
+
+- HR view All employee. and he complete employee salary. and also view emplyee details and progess.
+
+- Emplyee view payment history and add his work update.
+
+
+## Live Link:
+
+link: 
