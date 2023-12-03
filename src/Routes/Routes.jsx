@@ -13,7 +13,7 @@ import PaymentHistory from '../Pages/Dashboard/DashboardSection/PaymentHistory';
 import WorkSheet from '../Pages/Dashboard/DashboardSection/WorkSheet';
 import EmployeeDetails from '../Pages/Dashboard/DashboardSection/EmployeeDetails';
 import PrivateRoute from './PrivateRoute';
-import CheckoutForm from '../Pages/Dashboard/Payment/CheckOutForm';
+import Payment from '../Pages/Dashboard/Payment/Payment';
 
 const Routes = createBrowserRouter([
     {
@@ -67,8 +67,9 @@ const Routes = createBrowserRouter([
                         element : <EmployeeDetails></EmployeeDetails>
                     },
                     {
-                        path: "/dashboard/pay/:id",
-                        element : <CheckoutForm></CheckoutForm>
+                        path: "/dashboard/employee/payment/:id/:months",
+                        loader: ({ params }) => fetch(`http://localhost:5000/users/Employee/${params.id}`),
+                        element : <Payment></Payment>
                     }
                 ]
             },

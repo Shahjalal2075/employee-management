@@ -1,41 +1,45 @@
 import { useLoaderData } from "react-router-dom";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const data = [
-    {
-        name: 'May 23',
-        month: 40000,
-    },
-    {
-        name: 'Jun 23',
-        month: 30000
-    },
-    {
-        name: 'Jul 23',
-        month: 35000
-    },
-    {
-        name: 'Aug 23',
-        month: 37000
-    },
-    {
-        name: 'Sep 23',
-        month: 36000
-    },
-    {
-        name: 'Oct 23',
-        month: 33000
-    },
-    {
-        name: 'Nov 23',
-        month: 39000
-    },
-];
-
 const EmployeeDetails = () => {
 
     const employee = useLoaderData();
 
+    /*useEffect(() => {
+        fetch(`http://localhost:5000/salary/${employee.email}`)
+            .then(res => res.json())
+            .then(d => {
+                for (let i = 0; ; i++) {
+                    if (d[i] === undefined)
+                        break;
+                    const temp = {name: d[i].month,month: d[i].ammount}
+                    data.push(temp);
+                }
+            })
+    }, [employee.email]);*/
+
+    const data = [
+        {
+            name: 'May 23',
+            month: 20000,
+        },
+        {
+            name: 'Jun 23',
+            month: 25000
+        },
+        {
+            name: 'Jul 23',
+            month: 30000
+        },
+        {
+            name: 'Aug 23',
+            month: 35000
+        },
+        {
+            name: 'Sep 23',
+            month: 40000
+        }
+    ];
 
     return (
         <div className="flex flex-col justify-center items-center">
@@ -64,7 +68,7 @@ const EmployeeDetails = () => {
                     <Tooltip />
                     <Legend />
                     <CartesianGrid strokeDasharray="0 3" />
-                    <Bar dataKey="month" fill="#8884d8"  />
+                    <Bar dataKey="month" fill="#8884d8" />
                 </BarChart>
             </div>
         </div>

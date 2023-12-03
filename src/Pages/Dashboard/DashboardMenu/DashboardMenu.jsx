@@ -4,11 +4,8 @@ import "./DashboardMenu.css";
 
 const DashboardMenu = ({emp}) => {
 
-
-    console.log('VVV',emp.role);
-
     return (
-        <div className="flex flex-col justify-center items-center text-xl font-semibold bg-[#E84F74] border-2 border-[#E84F74]">
+        <div className="flex lg:flex-col flex-row mb-4 justify-center items-center text-xl font-semibold bg-[#E84F74] border-2 border-[#E84F74]">
             {emp.role==='Admin'&&<NavLink activeclassname="active" className="w-full text-center py-3" to={'/dashboard/all-employee'}>All Employee List</NavLink>}
             {emp.role==='HR'&&<NavLink activeclassname="active" className="w-full text-center py-3" to={'/dashboard/employee'}>Employee List</NavLink>}
             {emp.role==='HR'&&<NavLink activeclassname="active" className="w-full text-center py-3" to={'/dashboard/progress'}>Progress</NavLink>}

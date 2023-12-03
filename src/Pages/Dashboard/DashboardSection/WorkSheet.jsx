@@ -1,7 +1,7 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useContext, useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from "../../../Providers/AuthProvider";
@@ -42,6 +42,14 @@ const WorkSheet = () => {
         const month = months[bookingDate - 1];
         const work = { name, type, hours, month }
         console.log(work);
+        fetch('http://localhost:5000/worksheets', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(work)
+        })
+        toast('Works Add Successful');
     }
 
     return (

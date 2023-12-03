@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 const AllEmployeeView = ({ employee, index }) => {
+
+    const navigate = useNavigate();
 
     const handleMakeHr = () => {
         fetch(`http://localhost:5000/users/${employee.email}`, {
@@ -40,13 +43,14 @@ const AllEmployeeView = ({ employee, index }) => {
                     })
                     .then(data => {
                         console.log(data);
-                        if (data.deletedCount > 0) {
-                            Swal.fire(
-                                'Fired!',
-                                `Fired Successfully`,
-                                'success'
-                            )
-                        }
+                        Swal.fire(
+                            'Fired!',
+                            `Fired Successfully`,
+                            'success'
+                        )
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1600);
                     })
             }
         })

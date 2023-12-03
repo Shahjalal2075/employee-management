@@ -15,13 +15,13 @@ const Dashboard = () => {
     }, [user.email]);
 
     return (
-        <div className="grid grid-cols-5">
+        <div className="grid lg:grid-cols-5 grid-cols-1">
             <div className="">
                 {
                     employee.map(emp=><DashboardMenu key={emp._id} emp={emp}></DashboardMenu>)
                 }
             </div>
-            <div className="col-span-4">
+            <div className="lg:col-span-4 mx-8">
                 <Outlet></Outlet>
             </div>
         </div>
