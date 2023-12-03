@@ -19,7 +19,7 @@ const CheckOutForm = () => {
     const employeeSalary = employee.salary;
 
     useEffect(() => {
-        axios.post('http://localhost:5000/create-payment-intent', { salary: employeeSalary })
+        axios.post('https://employee-server-wine.vercel.app/create-payment-intent', { salary: employeeSalary })
             .then(res => {
                 console.log(res.data);
                 setClientSecret(res.data.clientSecret)
@@ -73,7 +73,7 @@ const CheckOutForm = () => {
                 const transaction = paymentIntent.id;
                 const ammount = paymentIntent.amount / 100;
                 const bill = { email, month, transaction, ammount };
-                fetch('http://localhost:5000/payment', {
+                fetch('https://employee-server-wine.vercel.app/payment', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

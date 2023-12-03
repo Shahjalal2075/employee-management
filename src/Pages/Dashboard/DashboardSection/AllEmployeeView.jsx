@@ -8,7 +8,7 @@ const AllEmployeeView = ({ employee, index }) => {
     const navigate = useNavigate();
 
     const handleMakeHr = () => {
-        fetch(`http://localhost:5000/users/${employee.email}`, {
+        fetch(`https://employee-server-wine.vercel.app/users/${employee.email}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -35,7 +35,7 @@ const AllEmployeeView = ({ employee, index }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/users/${employee._id}`, {
+                fetch(`https://employee-server-wine.vercel.app/users/${employee._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => {

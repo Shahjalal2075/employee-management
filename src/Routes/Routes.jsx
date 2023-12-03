@@ -63,12 +63,12 @@ const Routes = createBrowserRouter([
                     },
                     {
                         path: "/dashboard/employee/:id",
-                        loader: ({ params }) => fetch(`http://localhost:5000/users/Employee/${params.id}`),
+                        loader: ({ params }) => fetch(`https://employee-server-wine.vercel.app/users/Employee/${params.id}`),
                         element : <EmployeeDetails></EmployeeDetails>
                     },
                     {
                         path: "/dashboard/employee/payment/:id/:months",
-                        loader: ({ params }) => fetch(`http://localhost:5000/users/Employee/${params.id}`),
+                        loader: ({ params }) => fetch(`https://employee-server-wine.vercel.app/users/Employee/${params.id}`),
                         element : <Payment></Payment>
                     }
                 ]

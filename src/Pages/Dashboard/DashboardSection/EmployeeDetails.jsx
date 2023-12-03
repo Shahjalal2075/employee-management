@@ -6,7 +6,7 @@ const EmployeeDetails = () => {
     const employee = useLoaderData();
 
     /*useEffect(() => {
-        fetch(`http://localhost:5000/salary/${employee.email}`)
+        fetch(`https://employee-server-wine.vercel.app/salary/${employee.email}`)
             .then(res => res.json())
             .then(d => {
                 for (let i = 0; ; i++) {

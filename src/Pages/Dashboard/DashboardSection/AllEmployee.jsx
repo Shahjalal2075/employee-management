@@ -6,7 +6,7 @@ const AllEmployee = () => {
 
     const [employees, setEmployees] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/users/HR/Employee/Admin',{withCredentials: true})
+        axios.get('https://employee-server-wine.vercel.app/users/HR/Employee/Admin',{withCredentials: true})
         .then(res=>{
             setEmployees(res.data);
         })

@@ -21,7 +21,7 @@ const Login = () => {
                 console.log(result.user);
 
                 /*const user = { email }
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://employee-server-wine.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
                     })

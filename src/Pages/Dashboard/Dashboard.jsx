@@ -8,7 +8,7 @@ const Dashboard = () => {
     const { user } = useContext(AuthContext);
     const [employee, setEmployee] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:5000/verify/${user.email}`, { withCredentials: true })
+        axios.get(`https://employee-server-wine.vercel.app/verify/${user.email}`, { withCredentials: true })
             .then(res => {
                 setEmployee(res.data);
             })

@@ -18,7 +18,7 @@ const Progress = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/worksheets')
+        fetch('https://employee-server-wine.vercel.app/worksheets')
             .then(res => res.json())
             .then(data => setWorks(data))
     }, []);

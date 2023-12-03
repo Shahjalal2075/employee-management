@@ -42,7 +42,7 @@ const WorkSheet = () => {
         const month = months[bookingDate - 1];
         const work = { name, type, hours, month }
         console.log(work);
-        fetch('http://localhost:5000/worksheets', {
+        fetch('https://employee-server-wine.vercel.app/worksheets', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

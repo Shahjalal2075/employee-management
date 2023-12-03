@@ -8,7 +8,7 @@ const PaymentHistory = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/salary/${user.email}`)
+        fetch(`https://employee-server-wine.vercel.app/salary/${user.email}`)
             .then(res => res.json())
             .then(data => setPayments(data))
     }, [user.email]);

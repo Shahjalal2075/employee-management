@@ -45,14 +45,14 @@ const AuthProvider = ({ children }) => {
 
             if (currentUser) {
 
-                axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                axios.post('https://employee-server-wine.vercel.app/jwt', loggedUser, { withCredentials: true })
                     .then(res => {
                         console.log(res.data.token)
                         localStorage.setItem('access-token',res.data.token);
                     })
             }
             else {
-                axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+                axios.post('https://employee-server-wine.vercel.app/logout', loggedUser, { withCredentials: true })
                     .then(res => {
                         console.log(res.data)
                         localStorage.removeItem('access-token');

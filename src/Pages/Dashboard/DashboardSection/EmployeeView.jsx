@@ -26,7 +26,7 @@ const EmployeeView = ({ employee, index }) => {
 
 
     const verifyUser = () => {
-        fetch(`http://localhost:5000/users/${employee.email}`, {
+        fetch(`https://employee-server-wine.vercel.app/users/${employee.email}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

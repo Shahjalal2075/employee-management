@@ -14,7 +14,7 @@ const Payment = () => {
     const [isPayment, setIsPayment] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/salary/${employee.email}`)
+        fetch(`https://employee-server-wine.vercel.app/salary/${employee.email}`)
             .then(res => res.json())
             .then(data => {
                 for (let i = 0; ; i++) {
