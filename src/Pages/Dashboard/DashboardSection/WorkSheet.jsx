@@ -1,6 +1,6 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -12,6 +12,14 @@ const WorkSheet = () => {
     const { user } = useContext(AuthContext);
 
     const [selectedDate, setSelectedDate] = useState(null);
+
+    const [works, setWorks] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://employee-server-wine.vercel.app/worksheets/${user.displayName}`)
+            .then(res => res.json())
+            .then(data => setWorks(data))
+    }, [user.displayName]);
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -49,6 +57,7 @@ const WorkSheet = () => {
             },
             body: JSON.stringify(work)
         })
+        setWorks([...works,work]);
         toast('Works Add Successful');
     }
 
@@ -57,12 +66,12 @@ const WorkSheet = () => {
 
             <h2 className="text-center font-bold text-2xl my-6">Submit Work</h2>
 
-            <div className="flex flex-col justify-center items-center">
-                <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center" action="">
+            <div className="flex flex-col justify-center items-center mb-12">
+                <form onSubmit={handleSubmit} className="flex flex-row gap-5 justify-center items-center" action="">
 
                     <Listbox className="" value={selected} onChange={setSelected}>
-                        <div className="relative mt-1">
-                            <Listbox.Button className="border px-6 py-2 font-semibold text-lg text-black rounded-2xl mt-4 w-80 relative cursor-default bg-white text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                        <div className="relative">
+                            <Listbox.Button className="border px-6 py-2 font-semibold text-lg text-black rounded-2xl w-40 relative cursor-default bg-white text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                                 <span className="block truncate">{selected.name}</span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                     <ChevronUpDownIcon
@@ -77,7 +86,7 @@ const WorkSheet = () => {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0"
                             >
-                                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                                <Listbox.Options className="absolute mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
                                     {types.map((person, personIdx) => (
                                         <Listbox.Option
                                             key={personIdx}
@@ -108,15 +117,42 @@ const WorkSheet = () => {
                             </Transition>
                         </div>
                     </Listbox>
-                    <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Hours" type="number" name="hours" required />
-                    <DatePicker className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80"
+                    <input className="border px-6 py-1 text-lg text-black rounded-2xl w-40" placeholder="Hours" type="number" name="hours" required />
+                    <DatePicker className="border px-6 py-1 text-lg text-black rounded-2xl w-40"
                         selected={selectedDate}
                         onChange={handleDateChange}
                         dateFormat="dd-MM-yyyy"
                         placeholderText="Select a date"
                     />
-                    <input className="cursor-pointer bg-[#017EFF] text-lg rounded-2xl mt-4 text-white px-2 py-1 font-semibold mb-4 w-80" type="submit" value={"Submit"} />
+                    <input className="cursor-pointer bg-[#017EFF] text-lg rounded-2xl mt-4 text-white px-2 py-1 font-semibold mb-4 w-40" type="submit" value={"Submit"} />
                 </form>
+            </div>
+
+            <div className="overflow-x-auto">
+                <table className="table table-zebra">
+
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>Name</th>
+                            <th>Work type</th>
+                            <th>Work Hours</th>
+                            <th>Month</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {
+                            works.map((work, index) => <tr key={work._id}>
+                                <th>{index + 1}</th>
+                                <td>{work.name}</td>
+                                <td>{work.type}</td>
+                                <td>{work.hours}</td>
+                                <td>{work.month}</td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
             </div>
             <ToastContainer />
         </div>
