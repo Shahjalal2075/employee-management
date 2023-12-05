@@ -20,4 +20,4 @@
 
 ## Live Link:
 
-link: https://employee-management-6b961.web.app/
+link: https://magical-flavor.surge.sh/
