@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
-    const { signInUser, googleUser } = useContext(AuthContext);
+    const { signInUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogin = e => {
@@ -19,13 +19,6 @@ const Login = () => {
         signInUser(email, password)
             .then(result => {
                 console.log(result.user);
-
-                /*const user = { email }
-                axios.post('https://employee-server-wine.vercel.app/jwt', user, { withCredentials: true })
-                    .then(res => {
-                        console.log(res.data)
-                    })
-*/
 
                 toast("Login Succsessfull.");
                 setTimeout(() => {
@@ -45,21 +38,6 @@ const Login = () => {
             })
     }
 
-    const handleGoogleSignin = () => {
-        googleUser()
-            .then(result => {
-                console.log(result.user);
-                toast("Login Succsessfully.");
-
-                setTimeout(() => {
-                    navigate("/");
-                }, 1600);
-            })
-            .catch(error => {
-                console.error(error);
-                toast(error.message);
-            })
-    }
 
     return (
         <div className="grid lg:grid-cols-5 grid-cols-2">
@@ -68,15 +46,7 @@ const Login = () => {
 
                 <h2 className="text-4xl font-bold mt-8">Welcome Back</h2>
                 <p className="text-base font-medium mt-6 mb-4">Please Enter Your Details</p>
-                {/*<button onClick={handleGoogleSignin} className="border-[#38C6D1] border-2 px-6 py-1 rounded-2xl text-xl font-semibold my-6 w-80 flex justify-center items-center gap-4">
-                    <img className="w-6" src="https://i.ibb.co/5kpQLKC/google.png" alt="Google" />
-                    Log In with Google
-                </button>
-                <div className="flex gap-4 items-center">
-                    <hr className="w-20" />
-                    <p>or</p>
-                    <hr className="w-20" />
-    </div>*/}
+                
                 <div className="flex flex-col justify-center items-center">
                     <form onSubmit={handleLogin} className="flex flex-col justify-center items-center" action="">
                         <input className="border px-6 py-1 text-lg text-black rounded-2xl mt-4 w-80" placeholder="Enter Email" type="email" name="email" required />

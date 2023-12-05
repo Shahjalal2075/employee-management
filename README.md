@@ -1,6 +1,6 @@
 # Live Link:
 
-link: https://employee-management-75.surge.sh/
+link: https://magical-flavor.surge.sh/
 
 # Website Features:
 
