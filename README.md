@@ -23,7 +23,7 @@ link: https://magical-flavor.surge.sh/
 
 - Emplyee view payment history and add his work update.
 
-## :computer: Uses Languages and Tools:
+## :computer: Uses Languages and Tools
 
 <br>
 <p align="center">
